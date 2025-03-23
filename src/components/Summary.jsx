@@ -1,20 +1,47 @@
-import Iconmemory from '../images/icon-memory.svg'
-import Iconreaction from '../images/icon-reaction.svg'
-import Iconverbal from '../images/icon-verbal.svg'
-import Iconvisual from '../images/icon-visual.svg'
-
+import { useEffect, useState } from 'react'
 import Category from './Category.jsx'
 
 export default function Summary() {
+  const [data, setData] = useState([])
+  const getData = () => {
+    fetch('data.json', {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    })
+      .then((response) => {
+        return response.json()
+      })
+      .then((myJson) => {
+        setData(myJson)
+      })
+  }
+  useEffect(() => {
+    getData()
+  }, [])
+
   return (
     <>
-      <div className="p-8">
-        <h1 className="pb-5 text-lg font-bold">Summary</h1>
-        <Category category="Reaction" color="lightred" icon={Iconreaction} />
-        <Category category="Memory" color="orangeyyellow" icon={Iconmemory} />
-        <Category category="Verbal" color="greenteal" icon={Iconverbal} />
-        <Category category="Visual" color="cobaltblue" icon={Iconvisual} />
-        <div id="button">Continue</div>
+      <div className="p-8 box-border md:flex-1">
+        <h1 className="pb-2 text-2xl font-bold">Summary</h1>
+        {data.map((item, index) => {
+          return (
+            <Category
+              key={index}
+              category={item.category}
+              color={item.color}
+              icon={item.icon}
+              score={item.score}
+            />
+          )
+        })}
+        <div
+          id="button"
+          className="rounded-full bg-dark-gray-blue text-white p-4 text-center hover:cursor-pointer hover:bg-(image:--bg-results-gradient)"
+        >
+          Continue
+        </div>
       </div>
     </>
   )

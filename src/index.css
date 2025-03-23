@@ -1,22 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
 
-/* @font-face {
-  font-family: 'Hanken Grotesk', sans-serif;
-} */
-
-@font-face {
-  font-family: 'Hanken Grotesk';
-  src: url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
-}
-
 @layer base {
+  @font-face {
+    font-family: 'Hanken Grotesk';
+    src: url('assets/fonts/HankenGrotesk-VariableFont_wght.ttf');
+  }
   html {
     font-family: 'Hanken Grotesk', sans-serif;
   }
-  /* * {
-    outline: 1px solid red !important;
-  } */
 }
 
 @theme {
